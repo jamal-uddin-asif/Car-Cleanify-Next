@@ -137,7 +137,7 @@ const ServiceDetailsPage = async ({ params }) => {
 
               {/* Action Button */}
               <Link 
-                href={`/checkout?serviceId=${_id}`}
+                href={`/`}
                 className="block w-full text-center bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition duration-200 hover:-translate-y-0.5"
               >
                 Book Now
