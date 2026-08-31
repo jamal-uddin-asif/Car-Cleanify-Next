@@ -2,10 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import logo from './../../../public/assets/img/logo.png'
+import Container from "./Container";
 
 const Navber = () => {
   return (
-    <div className="bg-blue-400 flex justify-between items-center p-3">
+<div className="bg-blue-400">
+    <Container>
+    <div className=" flex justify-between items-center p-3">
       <Link href={'/'}>
         <Image src={logo} width={60} height={60} alt="Logo"/>
       </Link>
@@ -19,6 +22,9 @@ const Navber = () => {
         <button>Login</button>
       </div>
     </div>
+      </Container>
+
+      </div>
   );
 };
 
