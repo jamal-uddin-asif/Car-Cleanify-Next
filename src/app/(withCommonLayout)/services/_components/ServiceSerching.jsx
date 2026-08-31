@@ -1,13 +1,16 @@
 'use client'
+import UserContextProvider from "@/context/user.context";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 
 const ServiceSerching = () => {
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const router = useRouter()
-    console.log(searchParams)
+    const context = useContext(UserContextProvider)
+
+    console.log(context)
     const handleSubmit =(e) =>{
         
         e.preventDefault()

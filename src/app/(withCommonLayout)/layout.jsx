@@ -6,6 +6,7 @@ const commonLayout = ({ children }) => {
   return (
     <div>
       <Navber />
+      Commonlayout
       {children}
       <Footer />
     </div>
