@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ServiceCard({ service }) {
   if (!service) return null;
 
-  const { name, description, price, img, isFeatured, duration } = service;
+  const { name, description, price, img, isFeatured, duration, _id } = service;
 
   return (
     <div className="relative flex flex-col max-w-sm rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white hover:shadow-xl transition-shadow duration-300">
@@ -50,9 +51,9 @@ export default function ServiceCard({ service }) {
             <span className="text-2xl font-extrabold text-indigo-600">${price}</span>
           </div>
 
-          <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors duration-200">
-            Book Now
-          </button>
+          <Link href={`/services/${_id}`} className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors duration-200">
+            View details
+          </Link>
         </div>
 
       </div>
