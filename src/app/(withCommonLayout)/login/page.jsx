@@ -1,24 +1,48 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link"; // Assuming you might want to link to a signup page
+import React, { useContext, useState } from "react";
+import Link from "next/link";
+import Swal from "sweetalert2";
+import { UserContext } from "@/context/user.context";
 
 export default function LoginPage() {
+  const {user, setUser} = useContext(UserContext)
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const form = e.target
-    const email = form.email.value
-    const password = form.password.value
-    // Ekhane apnar login authentication logic boshaben (e.g., Firebase, NextAuth)
-    console.log("Login Attempt:", { email, password });
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    if (email === "asif@ph.com" && password === "asdf") {
+       const newUser = {
+      email,
+      name: email.split('@')[0]
+    }
+
+    setUser(newUser)
     
+
+      Swal.fire({
+        title: "Good job!",
+        text: "Login successful",
+        icon: "success",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Emali password not valid",
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
+    }
+
+   
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
-        
         {/* Header Section */}
         <div className="text-center">
           <h2 className="mt-2 text-3xl font-bold text-gray-900 tracking-tight">
@@ -32,7 +56,6 @@ export default function LoginPage() {
         {/* Login Form */}
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="space-y-5">
-            
             {/* Email Input */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-1">
@@ -44,8 +67,6 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 required
-          
-  
                 className="appearance-none block w-full px-4 py-3 border border-gray-200 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 sm:text-sm"
                 placeholder="you@example.com"
               />
@@ -53,7 +74,10 @@ export default function LoginPage() {
 
             {/* Password Input */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Password
               </label>
               <input
@@ -62,8 +86,6 @@ export default function LoginPage() {
                 type="password"
                 autoComplete="current-password"
                 required
-            
-         
                 className="appearance-none block w-full px-4 py-3 border border-gray-200 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 sm:text-sm"
                 placeholder="••••••••"
               />
@@ -79,13 +101,19 @@ export default function LoginPage() {
                 type="checkbox"
                 className="h-4 w-4 text-black focus:ring-black border-gray-300 rounded cursor-pointer transition-colors"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 cursor-pointer">
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-700 cursor-pointer"
+              >
                 Remember me
               </label>
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-gray-500 hover:text-black transition-colors">
+              <a
+                href="#"
+                className="font-medium text-gray-500 hover:text-black transition-colors"
+              >
                 Forgot password?
               </a>
             </div>
@@ -104,8 +132,11 @@ export default function LoginPage() {
 
         {/* Footer / Sign Up */}
         <p className="mt-8 text-center text-sm text-gray-500">
-          Don't have an account?{' '}
-          <a href="#" className="font-semibold text-black hover:underline transition-all">
+          Don't have an account?{" "}
+          <a
+            href="#"
+            className="font-semibold text-black hover:underline transition-all"
+          >
             Sign up
           </a>
         </p>
