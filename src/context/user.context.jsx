@@ -1,8 +1,8 @@
 "use client";
-import React, { Children, createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
-const UserContext = createContext(null);
-const UserContextProvider = ({ Children }) => {
+export const UserContext = createContext(null);
+const UserContextProvider = ({ children }) => {
 
 const [user, setUser] = useState(null)
 
@@ -10,7 +10,8 @@ const [user, setUser] = useState(null)
     user, 
     setUser,
   };
-  return <UserContext value={value}>{Children}</UserContext>;
+
+  return <UserContext value={value}>{children}</UserContext>;
 };
 
 export default UserContextProvider;

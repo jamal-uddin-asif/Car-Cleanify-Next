@@ -15,7 +15,7 @@ const ServiceSerching = () => {
         
         e.preventDefault()
         const searchText = e.target.search.value.trim()
-        const params=new URLSearchParams(searchParams)
+        const params= new URLSearchParams(searchParams)
         if(searchText){
             params.set('searchTerm', searchText)
         }else{
@@ -23,7 +23,7 @@ const ServiceSerching = () => {
         }
         console.log(params)
 
-        router.push(`${pathname}?${params}`)
+        router.push(`${pathname}?${params.toString()}`)
         
     }
   return (

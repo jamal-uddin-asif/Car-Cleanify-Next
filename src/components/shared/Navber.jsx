@@ -1,10 +1,14 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { use } from "react";
 import logo from './../../../public/assets/img/logo.png'
 import Container from "./Container";
+import { UserContext } from "@/context/user.context";
 
 const Navber = () => {
+  const {user, setUser} = use(UserContext)
+
   return (
 <div className="bg-blue-400">
     <Container>
@@ -19,7 +23,10 @@ const Navber = () => {
         <Link href={'/about-us'}>About Us</Link>
       </div>
       <div>
-        <button>Login</button>
+        {
+          user? <Link href={'/dashboard'}>Dashboard</Link> : <Link href={'/login'}>Login</Link>
+        }
+        
       </div>
     </div>
       </Container>

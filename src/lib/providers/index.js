@@ -1,3 +1,4 @@
+'use client'
 import BookingContextProvider from "@/context/booking.context";
 import UserContextProvider from "@/context/user.context";
 import React from "react";

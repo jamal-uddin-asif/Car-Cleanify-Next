@@ -3,7 +3,7 @@ import React, { Children, createContext, useState } from "react";
 
 const BookingContext = createContext(null);
 
-const BookingContextProvider = ({ Children }) => {
+const BookingContextProvider = ({ children }) => {
 
 const [booking, setBooking] = useState(null)
 
@@ -11,7 +11,7 @@ const [booking, setBooking] = useState(null)
     booking, 
     setBooking,
   };
-  return <BookingContext value={value}>{Children}</BookingContext>;
+  return <BookingContext value={value}>{children}</BookingContext>;
 };
 
 export default BookingContextProvider;
