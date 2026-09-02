@@ -1,13 +1,12 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import BookingBtn from './-components/BookingBtn';
 
-// Fetch single service data using the ID/slug from params
 const getSingleService = async (id) => {
   try {
     const res = await fetch(
       `https://car-washing-system-cleanify-server.vercel.app/api/v1/services/${id}`,
-      { cache: 'no-store' } // Ensures fresh data on every request
+      { cache: 'no-store' } 
     );
 
     if (!res.ok) return null;
@@ -21,10 +20,10 @@ const getSingleService = async (id) => {
 };
 
 const ServiceDetailsPage = async ({ params }) => {
+  
   const { slug } = await params;
   const service = await getSingleService(slug);
 
-  // Fallback UI if service doesn't exist or is deleted
   if (!service || service.isDeleted) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center text-center p-4">
@@ -47,8 +46,7 @@ const ServiceDetailsPage = async ({ params }) => {
   return (
     <main className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        
-        {/* Breadcrumb Navigation */}
+
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-indigo-600 transition">Home</Link>
           <span className="mx-2">/</span>
@@ -135,13 +133,7 @@ const ServiceDetailsPage = async ({ params }) => {
                 </div>
               </div>
 
-              {/* Action Button */}
-              <Link 
-                href={`/`}
-                className="block w-full text-center bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition duration-200 hover:-translate-y-0.5"
-              >
-                Book Now
-              </Link>
+             <BookingBtn service={service}/>
 
               <p className="text-xs text-center text-slate-400">
                 Instant confirmation upon booking completion.

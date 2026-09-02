@@ -1,15 +1,24 @@
 "use client";
 import React, { Children, createContext, useState } from "react";
 
-const BookingContext = createContext(null);
+export const BookingContext = createContext(null);
 
 const BookingContextProvider = ({ children }) => {
+  const [bookings, setBookings] = useState([]);
 
-const [booking, setBooking] = useState(null)
+  const addBooking = (booking) => {
+    setBookings([...bookings, booking]);
+  };
+
+  const removeBooking = (id) => {
+    setBookings((booking) => booking.filter((b) => b._id !== id));
+  };
 
   const value = {
-    booking, 
-    setBooking,
+    bookings,
+    setBookings,
+    addBooking,
+    removeBooking,
   };
   return <BookingContext value={value}>{children}</BookingContext>;
 };

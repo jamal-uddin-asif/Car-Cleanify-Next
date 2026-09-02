@@ -4,9 +4,11 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { UserContext } from "@/context/user.context";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const {user, setUser} = useContext(UserContext)
+  const { setUser} = useContext(UserContext)
+  const router = useRouter()
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,13 +23,16 @@ export default function LoginPage() {
     }
 
     setUser(newUser)
+    router.push('/services')
     
-
       Swal.fire({
         title: "Good job!",
         text: "Login successful",
         icon: "success",
       });
+
+
+      
     } else {
       Swal.fire({
         icon: "error",
@@ -35,6 +40,7 @@ export default function LoginPage() {
         text: "Emali password not valid",
         footer: '<a href="#">Why do I have this issue?</a>',
       });
+      setUser(null)
     }
 
    
