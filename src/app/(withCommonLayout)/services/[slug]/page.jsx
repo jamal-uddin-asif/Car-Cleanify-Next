@@ -13,7 +13,6 @@ const getSingleService = async (id) => {
   try {
     const res = await fetch(
       `https://car-washing-system-cleanify-server.vercel.app/api/v1/services/${id}`,
-      { cache: "no-store" },
     );
 
     if (!res.ok) return null;
