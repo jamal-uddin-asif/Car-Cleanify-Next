@@ -5,10 +5,11 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { UserContext } from "@/context/user.context";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
-  const { setUser} = useContext(UserContext)
-  const router = useRouter()
+  const { setUser } = useContext(UserContext);
+  const router = useRouter();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -16,34 +17,36 @@ export default function LoginPage() {
     const email = form.email.value;
     const password = form.password.value;
 
-    if (email === "asif@ph.com" && password === "asdf") {
-       const newUser = {
-      email,
-      name: email.split('@')[0]
-    }
+    // const newUser = {
+    //   email,
+    //   password,
+    // };
 
-    setUser(newUser)
-    router.push('/services')
-    
-      Swal.fire({
-        title: "Good job!",
-        text: "Login successful",
-        icon: "success",
-      });
+    signIn("credentials", { email: email, password: password });
 
+    // if (email === "asif@ph.com" && password === "asdf") {
+    //   const newUser = {
+    //     email,
+    //     name: email.split("@")[0],
+    //   };
 
-      
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Emali password not valid",
-        footer: '<a href="#">Why do I have this issue?</a>',
-      });
-      setUser(null)
-    }
+    //   setUser(newUser);
+    //   router.push("/services");
 
-   
+    //   Swal.fire({
+    //     title: "Good job!",
+    //     text: "Login successful",
+    //     icon: "success",
+    //   });
+    // } else {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...",
+    //     text: "Emali password not valid",
+    //     footer: '<a href="#">Why do I have this issue?</a>',
+    //   });
+    //   setUser(null);
+    // }
   };
 
   return (

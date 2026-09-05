@@ -5,9 +5,12 @@ import React, { use } from "react";
 import logo from './../../../public/assets/img/logo.png'
 import Container from "./Container";
 import { UserContext } from "@/context/user.context";
+import { useSession } from "next-auth/react";
 
 const Navber = () => {
   const {user, setUser} = use(UserContext)
+    const { data: session } = useSession()
+    console.log(session)
 
   return (
 <div className="bg-blue-400">
@@ -24,7 +27,7 @@ const Navber = () => {
       </div>
       <div>
         {
-          user? <Link href={'/dashboard'}>Dashboard</Link> : <Link href={'/login'}>Login</Link>
+          session? <Link href={'/dashboard'}>Dashboard</Link> : <Link href={'/login'}>Login</Link>
         }
         
       </div>
