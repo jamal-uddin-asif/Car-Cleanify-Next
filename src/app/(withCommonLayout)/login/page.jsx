@@ -22,31 +22,8 @@ export default function LoginPage() {
     //   password,
     // };
 
-    signIn("credentials", { email: email, password: password });
+    signIn("credentials", { email: email, password: password, redirect: false });
 
-    // if (email === "asif@ph.com" && password === "asdf") {
-    //   const newUser = {
-    //     email,
-    //     name: email.split("@")[0],
-    //   };
-
-    //   setUser(newUser);
-    //   router.push("/services");
-
-    //   Swal.fire({
-    //     title: "Good job!",
-    //     text: "Login successful",
-    //     icon: "success",
-    //   });
-    // } else {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Emali password not valid",
-    //     footer: '<a href="#">Why do I have this issue?</a>',
-    //   });
-    //   setUser(null);
-    // }
   };
 
   return (
